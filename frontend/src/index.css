@@ -109,3 +109,35 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* Responsive Layout Fixes */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+div, main, section {
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+table {
+  display: block;
+  width: 100% !important;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px !important;
+  }
+  h1, h2, h3 {
+    font-size: 1.4rem !important;
+  }
+  button, input, select {
+    width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+}
