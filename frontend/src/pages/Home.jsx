@@ -22,7 +22,9 @@ export default function Home() {
 
   return (
     <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-      <h2 style={{ marginBottom: '1.5rem', color: '#1e293b' }}>Patient CT Scan Records</h2>
+      {/* Patient CT Scan Records Heading with Yellow Color */}
+      <h2 style={{ marginBottom: '1.5rem', color: '#eab308' }}>Patient CT Scan Records</h2>
+      
       <div style={{ overflowX: 'auto', background: '#fff', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
