@@ -1,69 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import UploadForm from './components/UploadForm';
 
-function App() {
-  const defaultData = [
-    { id: 1, patientName: "Rahul Sharma", age: 45, gender: "Male", scanType: "Chest CT Scan", doctorName: "Dr. Verma", date: "2026-08-01", status: "Completed" },
-    { id: 2, patientName: "Priya Singh", age: 32, gender: "Female", scanType: "Brain CT Scan", doctorName: "Dr. Kapoor", date: "2026-08-02", status: "Pending" }
-  ];
-
-  const [records, setRecords] = useState(defaultData);
-
-  useEffect(() => {
-    fetch('https://ct-scan-backend.onrender.com/api/records')
-      .then(res => res.json())
-      .then(data => {
-        if (Array.isArray(data) && data.length > 0) {
-          setRecords(data);
-        }
-      })
-      .catch(err => console.log("Backend offline, showing default records"));
-  }, []);
-
+function Navbar() {
   return (
-    <div className="container" style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
-      <h2>CT Scan Patient Records</h2>
-      <div style={{ overflowX: 'auto' }}>
-        <table border="1" cellPadding="10" cellSpacing="0" style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr style={{ background: '#f4f4f4' }}>
-              <th>ID</th>
-              <th>Patient Name</th>
-              <th>Age</th>
-              <th>Gender</th>
-              <th>Scan Type</th>
-              <th>Doctor</th>
-              <th>Date</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {records.map((r) => (
-              <tr key={r.id}>
-                <td>{r.id}</td>
-                <td>{r.patientName}</td>
-                <td>{r.age}</td>
-                <td>{r.gender}</td>
-                <td>{r.scanType}</td>
-                <td>{r.doctorName}</td>
-                <td>{r.date}</td>
-                <td>
-                  <span style={{ 
-                    padding: '4px 8px', 
-                    borderRadius: '4px',
-                    color: '#fff',
-                    background: r.status === 'Completed' ? '#2e7d32' : '#ed6c02' 
-                  }}>
-                    {r.status}
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem 2rem', background: '#0f172a', color: '#fff', alignItems: 'center' }}>
+      <h2 style={{ margin: 0, color: '#38bdf8' }}>🏥 MedScan CT Viewer</h2>
+      <div>
+        <Link to="/" style={{ color: '#fff', marginRight: '1.5rem', textDecoration: 'none', fontWeight: 'bold' }}>Dashboard</Link>
+        <Link to="/upload" style={{ background: '#0284c7', color: '#fff', padding: '0.5rem 1rem', borderRadius: '6px', textDecoration: 'none' }}>Upload New Scan</Link>
       </div>
-    </div>
+    </nav>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/upload" element={<UploadForm />} />
+      </Routes>
+    </Router>
+  );
+}
