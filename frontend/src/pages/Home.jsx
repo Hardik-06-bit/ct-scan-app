@@ -22,31 +22,34 @@ export default function Home() {
 
   return (
     <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-      {/* Patient CT Scan Records Heading with Yellow Color */}
+      {/* Patient CT Scan Records Heading (Yellow) */}
       <h2 style={{ marginBottom: '1.5rem', color: '#eab308' }}>Patient CT Scan Records</h2>
       
       <div style={{ overflowX: 'auto', background: '#fff', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
             <tr style={{ background: '#f8fafc', borderBottom: '2px solid #e2e8f0' }}>
-              <th style={{ padding: '12px 16px' }}>Patient Name</th>
-              <th style={{ padding: '12px 16px' }}>Age</th>
-              <th style={{ padding: '12px 16px' }}>Gender</th>
-              <th style={{ padding: '12px 16px' }}>Scan Type</th>
-              <th style={{ padding: '12px 16px' }}>Doctor</th>
-              <th style={{ padding: '12px 16px' }}>Date</th>
-              <th style={{ padding: '12px 16px' }}>Status</th>
+              {/* Sub-headings in Bold Black */}
+              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Patient Name</th>
+              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Age</th>
+              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Gender</th>
+              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Scan Type</th>
+              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Doctor</th>
+              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Date</th>
+              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Status</th>
             </tr>
           </thead>
           <tbody>
             {records.map((r) => (
               <tr key={r._id || r.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                <td style={{ padding: '12px 16px', fontWeight: '600' }}>{r.patientName}</td>
-                <td style={{ padding: '12px 16px' }}>{r.age}</td>
-                <td style={{ padding: '12px 16px' }}>{r.gender}</td>
-                <td style={{ padding: '12px 16px' }}>{r.scanType}</td>
-                <td style={{ padding: '12px 16px' }}>{r.doctorName}</td>
-                <td style={{ padding: '12px 16px' }}>{r.date}</td>
+                {/* Records data text in Green color */}
+                <td style={{ padding: '12px 16px', fontWeight: '600', color: '#16a34a' }}>{r.patientName}</td>
+                <td style={{ padding: '12px 16px', color: '#16a34a', fontWeight: '500' }}>{r.age}</td>
+                <td style={{ padding: '12px 16px', color: '#16a34a', fontWeight: '500' }}>{r.gender}</td>
+                <td style={{ padding: '12px 16px', color: '#16a34a', fontWeight: '500' }}>{r.scanType}</td>
+                <td style={{ padding: '12px 16px', color: '#16a34a', fontWeight: '500' }}>{r.doctorName}</td>
+                <td style={{ padding: '12px 16px', color: '#16a34a', fontWeight: '500' }}>{r.date}</td>
+                {/* Status tag badge kept as it is */}
                 <td style={{ padding: '12px 16px' }}>
                   <span style={{
                     padding: '4px 10px',
