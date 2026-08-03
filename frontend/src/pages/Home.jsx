@@ -1,30 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Home() {
-  // Default records so they never disappear
   const defaultRecords = [
-    { 
-      _id: '1', 
-      patientName: 'Rahul Sharma', 
-      age: 45, 
-      gender: 'Male', 
-      scanType: 'Chest CT Scan', 
-      doctorName: 'Dr. Verma', 
-      date: '2026-08-01', 
-      status: 'Completed',
-      notes: 'Lungs are clear. Slight inflammation observed in lower left lobe.'
-    },
-    { 
-      _id: '2', 
-      patientName: 'Priya Singh', 
-      age: 32, 
-      gender: 'Female', 
-      scanType: 'Brain CT Scan', 
-      doctorName: 'Dr. Kapoor', 
-      date: '2026-08-02', 
-      status: 'Pending',
-      notes: 'Scan scheduled for processing. Waiting for radiologist report.'
-    }
+    { _id: '1', patientName: 'Rahul Sharma', age: 45, gender: 'Male', scanType: 'Chest CT Scan', doctorName: 'Dr. Verma', date: '2026-08-01', status: 'Completed', notes: 'Lungs are clear. Slight inflammation.'},
+    { _id: '2', patientName: 'Priya Singh', age: 32, gender: 'Female', scanType: 'Brain CT Scan', doctorName: 'Dr. Kapoor', date: '2026-08-02', status: 'Pending', notes: 'Scan scheduled. Waiting for report.'}
   ];
 
   const [records, setRecords] = useState(defaultRecords);
@@ -38,50 +17,49 @@ export default function Home() {
           setRecords(data);
         }
       })
-      .catch((err) => console.log("Backend loading delay, showing initial records"));
+      .catch((err) => console.log("Backend loading, showing initial records"));
   }, []);
 
   return (
     <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-      {/* Patient CT Scan Records Heading (Yellow) */}
-      <h2 style={{ marginBottom: '1.5rem', color: '#eab308' }}>Patient CT Scan Records</h2>
+      <h2 style={{ marginBottom: '1.5rem', color: '#0284c7', fontWeight: 'bold' }}>Patient CT Scan Records</h2>
       
-      <div style={{ overflowX: 'auto', background: '#fff', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
+      {/* Clean White Table Box standing out on Light Blue Page */}
+      <div style={{ 
+        overflowX: 'auto', 
+        background: '#ffffff', 
+        borderRadius: '12px', 
+        border: '1px solid #bae6fd',
+        boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.05)'
+      }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
           <thead>
             <tr style={{ background: '#f8fafc', borderBottom: '2px solid #e2e8f0' }}>
-              {/* Sub-headings in Bold Black */}
-              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Patient Name</th>
-              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Age</th>
-              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Gender</th>
-              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Scan Type</th>
-              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Doctor</th>
-              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Date</th>
-              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Summary</th>
+              <th style={{ padding: '16px', color: '#000', fontWeight: 'bold' }}>Patient Name</th>
+              <th style={{ padding: '16px', color: '#000', fontWeight: 'bold' }}>Age</th>
+              <th style={{ padding: '16px', color: '#000', fontWeight: 'bold' }}>Gender</th>
+              <th style={{ padding: '16px', color: '#000', fontWeight: 'bold' }}>Scan Type</th>
+              <th style={{ padding: '16px', color: '#000', fontWeight: 'bold' }}>Doctor</th>
+              <th style={{ padding: '16px', color: '#000', fontWeight: 'bold' }}>Date</th>
+              <th style={{ padding: '16px', color: '#000', fontWeight: 'bold' }}>Summary</th>
             </tr>
           </thead>
           <tbody>
             {records.map((r) => (
-              <tr 
-                key={r._id || r.id} 
-                style={{ borderBottom: '1px solid #f1f5f9', transition: 'background 0.2s' }}
-                onMouseEnter={(e) => e.currentTarget.style.background = '#f8fafc'}
-                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
-              >
-                {/* Record details in Green color */}
-                <td style={{ padding: '12px 16px', fontWeight: '600', color: '#16a34a' }}>{r.patientName}</td>
-                <td style={{ padding: '12px 16px', color: '#16a34a', fontWeight: '500' }}>{r.age}</td>
-                <td style={{ padding: '12px 16px', color: '#16a34a', fontWeight: '500' }}>{r.gender}</td>
-                <td style={{ padding: '12px 16px', color: '#16a34a', fontWeight: '500' }}>{r.scanType}</td>
-                <td style={{ padding: '12px 16px', color: '#16a34a', fontWeight: '500' }}>{r.doctorName}</td>
-                <td style={{ padding: '12px 16px', color: '#16a34a', fontWeight: '500' }}>{r.date}</td>
-                
-                {/* View Summary Clickable Button */}
-                <td style={{ padding: '12px 16px' }}>
+              <tr key={r._id || r.id} style={{ borderBottom: '1px solid #f1f5f9', transition: 'background 0.2s' }}
+                onMouseEnter={(e) => e.currentTarget.style.background = '#f0f9ff'}
+                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
+                <td style={{ padding: '16px', fontWeight: '600', color: '#16a34a' }}>{r.patientName}</td>
+                <td style={{ padding: '16px', color: '#16a34a', fontWeight: '500' }}>{r.age}</td>
+                <td style={{ padding: '16px', color: '#16a34a', fontWeight: '500' }}>{r.gender}</td>
+                <td style={{ padding: '16px', color: '#16a34a', fontWeight: '500' }}>{r.scanType}</td>
+                <td style={{ padding: '16px', color: '#16a34a', fontWeight: '500' }}>{r.doctorName}</td>
+                <td style={{ padding: '16px', color: '#16a34a', fontWeight: '500' }}>{r.date}</td>
+                <td style={{ padding: '16px' }}>
                   <button 
                     onClick={() => setSelectedRecord(r)}
                     style={{
-                      padding: '6px 12px',
+                      padding: '6px 14px',
                       borderRadius: '6px',
                       fontSize: '0.85rem',
                       fontWeight: 'bold',
@@ -103,7 +81,7 @@ export default function Home() {
         </table>
       </div>
 
-      {/* Pop-up Modal when clicked */}
+      {/* Detail Modal */}
       {selectedRecord && (
         <div style={{
           position: 'fixed',
@@ -111,7 +89,7 @@ export default function Home() {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'rgba(0, 0, 0, 0.6)',
+          background: 'rgba(15, 23, 42, 0.65)',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -123,7 +101,7 @@ export default function Home() {
             borderRadius: '12px',
             maxWidth: '500px',
             width: '90%',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
+            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
             position: 'relative'
           }} onClick={(e) => e.stopPropagation()}>
             <button 
