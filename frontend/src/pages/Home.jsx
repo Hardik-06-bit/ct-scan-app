@@ -57,15 +57,14 @@ export default function Home() {
               <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Scan Type</th>
               <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Doctor</th>
               <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Date</th>
-              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Status</th>
+              <th style={{ padding: '12px 16px', color: '#000', fontWeight: 'bold' }}>Summary</th>
             </tr>
           </thead>
           <tbody>
             {records.map((r) => (
               <tr 
                 key={r._id || r.id} 
-                onClick={() => setSelectedRecord(r)}
-                style={{ borderBottom: '1px solid #f1f5f9', cursor: 'pointer', transition: 'background 0.2s' }}
+                style={{ borderBottom: '1px solid #f1f5f9', transition: 'background 0.2s' }}
                 onMouseEnter={(e) => e.currentTarget.style.background = '#f8fafc'}
                 onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
               >
@@ -76,19 +75,27 @@ export default function Home() {
                 <td style={{ padding: '12px 16px', color: '#16a34a', fontWeight: '500' }}>{r.scanType}</td>
                 <td style={{ padding: '12px 16px', color: '#16a34a', fontWeight: '500' }}>{r.doctorName}</td>
                 <td style={{ padding: '12px 16px', color: '#16a34a', fontWeight: '500' }}>{r.date}</td>
-                {/* Status Badge */}
+                
+                {/* View Summary Clickable Button */}
                 <td style={{ padding: '12px 16px' }}>
-                  <span style={{
-                    padding: '4px 10px',
-                    borderRadius: '20px',
-                    fontSize: '0.85rem',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    background: r.status === 'Completed' ? '#dcfce7' : '#fef3c7',
-                    color: r.status === 'Completed' ? '#166534' : '#92400e'
-                  }}>
-                    {r.status}
-                  </span>
+                  <button 
+                    onClick={() => setSelectedRecord(r)}
+                    style={{
+                      padding: '6px 12px',
+                      borderRadius: '6px',
+                      fontSize: '0.85rem',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      background: '#0284c7',
+                      color: '#fff',
+                      border: 'none',
+                      transition: 'background 0.2s'
+                    }}
+                    onMouseEnter={(e) => e.target.style.background = '#0369a1'}
+                    onMouseLeave={(e) => e.target.style.background = '#0284c7'}
+                  >
+                    View Summary
+                  </button>
                 </td>
               </tr>
             ))}
@@ -135,7 +142,7 @@ export default function Home() {
               ✕
             </button>
             <h3 style={{ margin: '0 0 1rem 0', color: '#0284c7', borderBottom: '2px solid #e2e8f0', paddingBottom: '0.5rem' }}>
-              📋 CT Scan Details
+              📋 CT Scan Summary
             </h3>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.8rem', color: '#334155' }}>
               <p><strong>Patient Name:</strong> {selectedRecord.patientName}</p>
